@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.Client", "Dem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.ServerAPI", "Demos.HackerU.ServerAPI\Demos.HackerU.ServerAPI.csproj", "{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServer", "APIServer\APIServer.csproj", "{AFC4A8BE-52FE-4840-877F-C45A2BD77EAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC4A8BE-52FE-4840-877F-C45A2BD77EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC4A8BE-52FE-4840-877F-C45A2BD77EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC4A8BE-52FE-4840-877F-C45A2BD77EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC4A8BE-52FE-4840-877F-C45A2BD77EAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

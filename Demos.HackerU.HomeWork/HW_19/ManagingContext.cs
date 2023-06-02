@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Demos.HackerU.HomeWork.HW_19
 {
+
+
+
     public class ManagingContext : DbContext
     {
         public DbSet<Manager> managers { get; set; }
