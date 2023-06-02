@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork", "HomeWork", "{B7
 		HW_17.txt = HW_17.txt
 		HW_18.txt = HW_18.txt
 		HW_19.txt = HW_19.txt
+		HW_20.txt = HW_20.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.HomeWork", "Demos.HackerU.HomeWork\Demos.HackerU.HomeWork.csproj", "{A793DE91-0776-42C3-BFEE-938888D77F0F}"
@@ -35,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.Wpf", "Demos.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.Client", "Demos.HackerU.Client\Demos.HackerU.Client.csproj", "{8B991FEB-C743-422C-BE1B-9BAAC4734FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.HackerU.ServerAPI", "Demos.HackerU.ServerAPI\Demos.HackerU.ServerAPI.csproj", "{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demos.HackerU.ServerAPI", "Demos.HackerU.ServerAPI\Demos.HackerU.ServerAPI.csproj", "{D2D3673B-C86D-498B-AEDE-F28BBBC40D10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
