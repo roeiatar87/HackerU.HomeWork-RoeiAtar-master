@@ -33,10 +33,9 @@ namespace Demos.HackerU.HomeWork.HW_20
             using (UsersDbContext db = new UsersDbContext())
             {
                 User? user = db.users.SingleOrDefault(x => x.Id == id);
-                if (user == null)
+                if (user != null)
                 {
-                    user._roles.Add(new Role { RoleName = roleName });
-                    UpdateUserRole(user);
+                    db.roles.Add(new Role { RoleName = roleName });
                 }
                 return db.SaveChanges() > 0;
             }
