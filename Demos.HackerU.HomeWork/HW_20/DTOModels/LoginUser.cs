@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demos.HackerU.HomeWork.HW_20
+namespace Demos.HackerU.HomeWork.HW_20.DTOModels
 {
-    public class Users
+    public class LoginUser
     {
-
         public string UserName { get; set; }
-        public int id { get; set; }
-
-        public List<Roles> _roles { get; set; }
-
+        public string Password { get; set; }
     }
 }
+

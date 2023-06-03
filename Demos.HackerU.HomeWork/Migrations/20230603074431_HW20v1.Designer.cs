@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Demos.HackerU.HomeWork.Migrations
 {
     [DbContext(typeof(UsersDbContext))]
-    [Migration("20230602135429_Hw20v1")]
-    partial class Hw20v1
+    [Migration("20230603074431_HW20v1")]
+    partial class HW20v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,66 +24,74 @@ namespace Demos.HackerU.HomeWork.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Demos.HackerU.HomeWork.HW_20.Roles", b =>
+            modelBuilder.Entity("Demos.HackerU.HomeWork.HW_20.Role", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("roles");
                 });
 
-            modelBuilder.Entity("Demos.HackerU.HomeWork.HW_20.Users", b =>
+            modelBuilder.Entity("Demos.HackerU.HomeWork.HW_20.User", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("users");
                 });
 
-            modelBuilder.Entity("RolesUsers", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("_rolesid")
+                    b.Property<int>("_rolesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("_usersid")
+                    b.Property<int>("_usersId")
                         .HasColumnType("int");
 
-                    b.HasKey("_rolesid", "_usersid");
+                    b.HasKey("_rolesId", "_usersId");
 
-                    b.HasIndex("_usersid");
+                    b.HasIndex("_usersId");
 
-                    b.ToTable("RolesUsers");
+                    b.ToTable("RoleUser");
                 });
 
-            modelBuilder.Entity("RolesUsers", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("Demos.HackerU.HomeWork.HW_20.Roles", null)
+                    b.HasOne("Demos.HackerU.HomeWork.HW_20.Role", null)
                         .WithMany()
-                        .HasForeignKey("_rolesid")
+                        .HasForeignKey("_rolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Demos.HackerU.HomeWork.HW_20.Users", null)
+                    b.HasOne("Demos.HackerU.HomeWork.HW_20.User", null)
                         .WithMany()
-                        .HasForeignKey("_usersid")
+                        .HasForeignKey("_usersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

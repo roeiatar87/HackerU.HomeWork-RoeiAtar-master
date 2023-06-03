@@ -9,8 +9,8 @@ namespace Demos.HackerU.HomeWork.HW_20
 {
     public class UsersDbContext : DbContext
     {
-        public DbSet<Users> users { get; set; }
-        public DbSet<Roles> roles { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Role> roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,7 +19,7 @@ namespace Demos.HackerU.HomeWork.HW_20
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>()
+            modelBuilder.Entity<User>()
            .HasMany(e => e._roles)
            .WithMany(e => e._users);
         }
