@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +14,33 @@ namespace Demos.HackerU.HomeWork.HW_20
         {
             return new User();
         }
-        public bool UserRegister(User user)
+        public bool UserRegister(string name, string password, string email, string rolename)
         {
-            return false;
+            User user = new User();
+            user.UserName = name;
+            user.Password = password;
+            user.Email = email;
+            user._roles = new List<Role>() { new Role { RoleName = rolename } };
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                db.users.Add(user);
+                return db.SaveChanges() > 0;
+            }
         }
-        public bool AddUserToRole(User user)
+
+        public bool AddUserToRole(int id, string roleName)
         {
-            return false;
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                User? user = db.users.SingleOrDefault(x => x.Id == id);
+                if (user == null)
+                {
+                    user._roles.Add(new Role { RoleName = roleName });
+                    UpdateUserRole(user);
+                }
+                return db.SaveChanges() > 0;
+            }
+
         }
         public bool RemoveUserFromRole(int id)
         {
@@ -27,7 +48,11 @@ namespace Demos.HackerU.HomeWork.HW_20
         }
         public bool UpdateUserRole(User userToUpdate)
         {
-            return false;
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                db.users.Update(userToUpdate);
+                return db.SaveChanges() > 0;
+            }
         }
         public List<string> GetAllUsersEmailsInRole()
         {
@@ -38,5 +63,15 @@ namespace Demos.HackerU.HomeWork.HW_20
             return false;
         }
 
+        public List<User> GetAllUsers()
+        {
+            var list = new List<User>();
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                list = db.users.ToList();
+            }
+            return list;
+
+        }
     }
 }
