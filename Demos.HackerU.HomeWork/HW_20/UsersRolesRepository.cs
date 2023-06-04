@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,14 +44,28 @@ namespace Demos.HackerU.HomeWork.HW_20
                 User? user = db.users.SingleOrDefault(x => x.Id == id);
                 if (user != null)
                 {
-                    db.roles.Add(new Role { RoleName = roleName });
+                    Role role = new Role();
+                    role.RoleName = roleName;
+                    user._roles.Add(role);
+                    return UpdateUserRole(user);
+
                 }
-                return db.SaveChanges() > 0;
+
             }
+            return false;
 
         }
         public bool RemoveUserFromRole(int id)
         {
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                Role? role = db.roles.SingleOrDefault(x => x.Id == id);
+                if (role != null)
+                {
+                    db.roles.Remove(role);
+                    return db.SaveChanges() > 0;
+                }
+            }
             return false;
         }
         public bool UpdateUserRole(User userToUpdate)
