@@ -44,11 +44,9 @@ namespace Demos.HackerU.HomeWork.HW_20
                 User? user = db.users.SingleOrDefault(x => x.Id == id);
                 if (user != null)
                 {
-                    Role role = new Role();
-                    role.RoleName = roleName;
-                    user._roles.Add(role);
-                    return UpdateUserRole(user);
-
+                    user._roles = new List<Role>() { new Role { RoleName = roleName } };
+                    db.users.Update(user);
+                    return db.SaveChanges() > 0;
                 }
 
             }
@@ -68,17 +66,40 @@ namespace Demos.HackerU.HomeWork.HW_20
             }
             return false;
         }
-        public bool UpdateUserRole(User userToUpdate)
+        public bool UpdateUserRole(int id, string rolename, string roleToUpdate)
         {
             using (UsersDbContext db = new UsersDbContext())
             {
-                db.users.Update(userToUpdate);
+                Role? role = db.roles.SingleOrDefault(x => x.RoleName == rolename && x.Id == id);
+
+                if (role != null)
+                {
+                    role.RoleName = roleToUpdate;
+                    db.roles.Update(role);
+                }
                 return db.SaveChanges() > 0;
             }
         }
-        public List<string> GetAllUsersEmailsInRole()
+        public List<string> GetAllUsersEmailsInRole(string roleName)
         {
-            return new List<string>();
+            List<string> emails = new List<string>();
+            using (UsersDbContext db = new UsersDbContext())
+            {
+                List<Role> roles = db.roles.Where(x => x.RoleName == roleName).ToList();
+
+                foreach (Role role in roles)
+                {
+                    foreach (User user in db.users)
+                    {
+                        if (user.Id == role.Id)
+                        {
+                            emails.Add(user.Email);
+                        }
+                    }
+                }
+
+                return emails;
+            }
         }
         public bool IsUserInRole(string userName)
         {

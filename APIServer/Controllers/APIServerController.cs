@@ -28,15 +28,15 @@ namespace APIServer.Controllers
         }
 
         // GET api/<APIServerController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{roleName}")]
+        public List<string> Get(string roleName)
         {
-
-            return "value";
+            var users = usersRepo.GetAllUsersEmailsInRole(roleName);
+            return users;
         }
 
         // POST api/<APIServerController>
-        [HttpPost]
+        [HttpPost("")]
         public void Post(string userName, string password, string email, string rolename)
         {
             usersRepo.UserRegister(userName, password, email, rolename); ;
@@ -44,22 +44,24 @@ namespace APIServer.Controllers
 
         // POST api/<APIServerController>
         [HttpPost("{id}")]
-        public void Post(int id, string rolename)
+        public void Post([FromBody] int id, string rolename)
         {
             usersRepo.AddUserToRole(id, rolename);
         }
 
         // PUT api/<APIServerController>/5
         [HttpPut]
-        public void Put([FromBody] int id, string value)
+        public void Put(int id, string roleName, string roleToUpdate)
         {
-
+            usersRepo.UpdateUserRole(id, roleName, roleToUpdate);
         }
 
         // DELETE api/<APIServerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
+            usersRepo.RemoveUserFromRole(id);
+
         }
     }
 }
